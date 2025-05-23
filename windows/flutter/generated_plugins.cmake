@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  animated_rating_stars
   app_links
   cloud_firestore
   file_selector_windows

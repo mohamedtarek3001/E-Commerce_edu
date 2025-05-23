@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:untitled2/ecommerce_app/business_logic/blocs_cubits/product_cubit.dart';
 
 import '../../../business_logic/blocs_cubits/auth_cubit.dart';
+import '../../main_app/home_hub.dart';
 import '../../main_app/product_addition_screens/product_addition_screen.dart';
+import '../../main_app/product_widget_test.dart';
 import '../../widgets/custom_input_field.dart';
 import '../forget_password_screens/forget_password_screen.dart';
 import '../sign_up_screens/figma_signup_screen.dart';
@@ -113,10 +116,11 @@ class LoginScreenFigma extends StatelessWidget {
                           content: Text('Logged in successfully'),
                         ),
                       );
+                      BlocProvider.of<ProductCubit>(context).getProducts();
                       Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => ProductAdditionScreen(),
+                          builder: (context) => HomeHub(),
                         ),
                       );
                     } else if (state is AuthFail) {

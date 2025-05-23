@@ -72,6 +72,7 @@ class ProductCubit extends Cubit<ProductState> {
     }
   }
 
+  List<ProductModel>? products = [];
 
   ProductModel createProduct(String productId){
     return ProductModel(
@@ -97,6 +98,24 @@ class ProductCubit extends Cubit<ProductState> {
     }catch (e){
       emit(ProductCreationFail(e.toString()));
     }
+  }
+
+
+  Future getProducts() async{
+    fireStore = FirebaseFirestore.instance;
+    try{
+      emit(ProductRetrievingLoading());
+      var rawProducts = await fireStore.collection('Products').get();
+      products = rawProducts.docs.map((e) => ProductModel.fromJson(e.data()),).toList();
+      emit(ProductRetrievingSuccess());
+    }catch (e){
+      emit(ProductRetrievingFail(e.toString()));
+    }
+  }
+
+  Stream<QuerySnapshot<Map<String, dynamic>>> getProductsStream() async*{
+    fireStore = FirebaseFirestore.instance;
+    yield* fireStore.collection('Products').snapshots();
   }
 
 

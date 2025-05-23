@@ -20,6 +20,14 @@ final class ProductCreationFail extends ProductState {
 }
 
 
+final class ProductRetrievingLoading extends ProductState {}
+final class ProductRetrievingSuccess extends ProductState {}
+final class ProductRetrievingFail extends ProductState {
+  final String error;
+  ProductRetrievingFail(this.error);
+}
+
+
 final class ImageUploading extends ProductState {}
 
 final class ImageUploaded extends ProductState {}

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:untitled2/ecommerce_app/business_logic/blocs_cubits/auth_cubit.dart';
 
+import 'ecommerce_app/business_logic/blocs_cubits/navigation_cubit.dart';
 import 'ecommerce_app/business_logic/blocs_cubits/product_cubit.dart';
 import 'ecommerce_app/presentation_layer/auth_screens/login_screens/login_screen.dart';
 import 'ecommerce_app/presentation_layer/auth_screens_figma/login_screens/login_screen.dart';
@@ -26,6 +27,9 @@ Future<void> main() async {
         ),
         BlocProvider(
           create: (context) => ProductCubit(),
+        ),
+        BlocProvider(
+          create: (context) => NavigationCubit(),
         ),
       ],
       child: const MyApp(),
